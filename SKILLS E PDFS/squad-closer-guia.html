@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQUAD CLOSER — Guia de Ativação</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --black: #080810;
+    --dark: #0e0e1a;
+    --card: #13131f;
+    --border: #1e1e30;
+    --purple: #7c3aed;
+    --purple-light: #a855f7;
+    --purple-glow: rgba(124, 58, 237, 0.15);
+    --white: #f0f0f8;
+    --muted: #6b6b8a;
+    --accent: #c4b5fd;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124,58,237,0.2) 0%, transparent 70%);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 24px 48px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--purple-glow);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hero-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 12vw, 96px);
+    letter-spacing: 6px;
+    line-height: 0.9;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .hero-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 8px;
+    color: var(--purple-light);
+    margin-bottom: 20px;
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+    letter-spacing: 0.3px;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-top: 56px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--purple-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  /* STEP */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+  }
+
+  .step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--purple-light);
+    background: var(--purple-glow);
+    border: 1px solid rgba(124,58,237,0.3);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  .step-body {
+    padding: 0 24px 24px 72px;
+    color: #9090b0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .step-body p { margin-bottom: 8px; }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  /* HIGHLIGHT */
+  .highlight {
+    background: var(--purple-glow);
+    border-left: 2px solid var(--purple);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .highlight strong {
+    color: var(--white);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* PATH */
+  .path {
+    background: #0a0a14;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .path span {
+    color: var(--muted);
+    margin: 0 4px;
+  }
+
+  /* AGENTS GRID */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+    margin-top: 16px;
+  }
+
+  .agent-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .agent-card:hover {
+    border-color: rgba(124,58,237,0.4);
+  }
+
+  .agent-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--purple-light);
+    margin-bottom: 4px;
+  }
+
+  .agent-role {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* PLAN CARD */
+  .plan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  }
+
+  .plan-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .plan-tag {
+    display: inline-block;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: var(--accent);
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .plan-features li {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: #9090b0;
+    align-items: flex-start;
+  }
+
+  .plan-features li::before {
+    content: '→';
+    color: var(--purple-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* NOTE */
+  .note {
+    background: rgba(168, 85, 247, 0.05);
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .note strong { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 64px;
+    text-align: center;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: #3a3a5a;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .step-body { padding-left: 24px; }
+    .agents-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Guia de Ativação Oficial</div>
+  <div class="hero-logo">SQUAD CLOSER</div>
+  <div class="hero-sub">IA</div>
+  <p class="hero-desc">Siga esse guia do começo ao fim. Em menos de 10 minutos seus 9 agentes estarão ativos e prontos para trabalhar por você.</p>
+</div>
+
+<div class="container">
+
+  <!-- ETAPA 1 — CRIAR CONTA -->
+  <div class="section">
+    <div class="section-label">Passo 01</div>
+    <div class="section-title">CRIAR SUA CONTA NA CLAUDE</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">1</div>
+          <div class="step-title">Acesse o site oficial</div>
+        </div>
+        <div class="step-body">
+          <p>Abra o navegador e acesse:</p>
+          <div class="path">claude.ai</div>
+          <p>Clique em <strong style="color:#fff">Começar gratuitamente</strong> ou <strong style="color:#fff">Sign Up</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">2</div>
+          <div class="step-title">Escolha como criar sua conta</div>
+        </div>
+        <div class="step-body">
+          <p>Você pode criar com:</p>
+          <p>→ Conta do Google (mais rápido)<br>→ E-mail e senha</p>
+          <p>Recomendamos usar o Google para facilitar o login.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">3</div>
+          <div class="step-title">Confirme o e-mail se necessário</div>
+        </div>
+        <div class="step-body">
+          <p>Se criou com e-mail, verifique sua caixa de entrada. Clique no link de confirmação enviado pela Anthropic.</p>
+          <p>Após confirmar, sua conta está criada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPA 2 — PLANO -->
+  <div class="section">
+    <div class="section-label">Passo 02</div>
+    <div class="section-title">QUAL PLANO VOCÊ PRECISA</div>
+
+    <div class="plan-card">
+      <div class="plan-name">Claude Pro</div>
+      <div class="plan-tag">PLANO RECOMENDADO</div>
+      <ul class="plan-features">
+        <li>Acesso completo às Skills — incluindo todos os 9 agentes do SQUAD CLOSER</li>
+        <li>Execução de código habilitada (necessária para as Skills funcionarem)</li>
+        <li>Uso prioritário — sem limite curto de mensagens</li>
+        <li>Acesso aos modelos mais avançados da Claude</li>
+        <li>Disponível pelo site e pelo aplicativo desktop</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>Importante:</strong> Skills estão disponíveis nos planos <strong>Pro, Max, Team e Enterprise</strong>. O plano gratuito não suporta Skills. O Pro é suficiente para uso individual dos 9 agentes.
+    </div>
+
+    <div class="steps" style="margin-top:16px;">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">→</div>
+          <div class="step-title">Como assinar o Pro</div>
+        </div>
+        <div class="step-body">
+          <p>Dentro da sua conta, clique no seu nome (canto inferior esquerdo)</p>
+          <p>Selecione <strong style="color:#fff">Upgrade to Pro</strong></p>
+          <p>Preencha os dados do cartão e confirme a assinatura.</p>
+          <div class="highlight">
+            <strong>O plano Pro é cobrado em dólar (USD) mensalmente.</strong>
+            O valor é debitado no cartão internacional ou pode ser pago via cartão nacional em muitos casos — depende da sua operadora.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPA 3 — HABILITAR -->
+  <div class="section">
+    <div class="section-label">Passo 03</div>
+    <div class="section-title">HABILITAR AS SKILLS NA CLAUDE</div>
+
+    <p style="color:var(--muted); margin-bottom:16px; font-size:14px;">Antes de subir os agentes, você precisa ativar duas funções nas configurações.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">1</div>
+          <div class="step-title">Abra as Configurações</div>
+        </div>
+        <div class="step-body">
+          <p>Clique no seu nome ou foto de perfil no canto inferior esquerdo da tela.</p>
+          <p>Selecione <strong style="color:#fff">Settings</strong> (Configurações).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">2</div>
+          <div class="step-title">Ative o Code Execution</div>
+        </div>
+        <div class="step-body">
+          <p>Vá em: <strong style="color:#fff">Feature Previews</strong></p>
+          <div class="path">Settings <span>›</span> Feature Previews <span>›</span> Code Execution and File Creation</div>
+          <p>Ative o botão. Isso é obrigatório — as Skills não funcionam sem essa opção.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">3</div>
+          <div class="step-title">Ative as Skills</div>
+        </div>
+        <div class="step-body">
+          <p>Ainda em <strong style="color:#fff">Feature Previews</strong>, ative também:</p>
+          <div class="path">Settings <span>›</span> Feature Previews <span>›</span> Skills</div>
+          <p>Após ativar os dois, as Skills já estarão disponíveis na sua conta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPA 4 — SUBIR AS SKILLS -->
+  <div class="section">
+    <div class="section-label">Passo 04</div>
+    <div class="section-title">SUBIR OS 9 AGENTES NA CLAUDE</div>
+
+    <p style="color:var(--muted); margin-bottom:16px; font-size:14px;">Você recebeu 9 arquivos <strong style="color:#fff">.skill</strong> — um para cada agente. Siga os passos abaixo para instalar cada um.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">1</div>
+          <div class="step-title">Acesse a área de Skills</div>
+        </div>
+        <div class="step-body">
+          <div class="path">Settings <span>›</span> Customize <span>›</span> Skills</div>
+          <p>Você verá a tela de gerenciamento de Skills com um botão de upload.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">2</div>
+          <div class="step-title">Faça o upload de cada agente</div>
+        </div>
+        <div class="step-body">
+          <p>Clique em <strong style="color:#fff">Upload Skill</strong></p>
+          <p>Selecione o primeiro arquivo <strong style="color:#fff">.skill</strong> da sua pasta do SQUAD CLOSER.</p>
+          <p>Repita o processo para cada um dos 9 agentes.</p>
+          <div class="highlight">
+            <strong>Ordem não importa.</strong>
+            Você pode subir em qualquer ordem. Cada agente funciona de forma independente.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">3</div>
+          <div class="step-title">Confirme que todos estão ativos</div>
+        </div>
+        <div class="step-body">
+          <p>Após o upload, cada agente vai aparecer na lista com nome e descrição.</p>
+          <p>Certifique-se de que todos os 9 estão listados e com o toggle <strong style="color:#fff">ativado</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Os 9 agentes -->
+    <div style="margin-top:24px;">
+      <div class="section-label" style="margin-bottom:12px;">Os 9 Agentes</div>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-name">SCOUT</div>
+          <div class="agent-role">Prospecção e qualificação de leads</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">HUNTER</div>
+          <div class="agent-role">Abordagem fria e primeiro contato</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">MAPPER</div>
+          <div class="agent-role">Diagnóstico de necessidade</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">PITCHER</div>
+          <div class="agent-role">Apresentação de oferta</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">HANDLER</div>
+          <div class="agent-role">Quebra de objeções</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">CLOSER</div>
+          <div class="agent-role">Fechamento e decisão</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">GHOST</div>
+          <div class="agent-role">Recuperação de leads frios</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">KEEPER</div>
+          <div class="agent-role">Pós-venda e retenção</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-name">ANALYST</div>
+          <div class="agent-role">Análise de pipeline e métricas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPA 5 — COMO USAR -->
+  <div class="section">
+    <div class="section-label">Passo 05</div>
+    <div class="section-title">COMO USAR OS AGENTES</div>
+
+    <p style="color:var(--muted); margin-bottom:20px; font-size:14px;">Simples. Você abre a Claude, escreve o que precisa e o agente certo entra em ação automaticamente.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">1</div>
+          <div class="step-title">Abra uma nova conversa na Claude</div>
+        </div>
+        <div class="step-body">
+          <p>Acesse <strong style="color:#fff">claude.ai</strong> e clique em <strong style="color:#fff">New Chat</strong>.</p>
+          <p>As Skills ficam ativas em segundo plano — você não precisa ativar nada a cada conversa.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">2</div>
+          <div class="step-title">Fale com o agente que você precisa</div>
+        </div>
+        <div class="step-body">
+          <p>Você pode chamar diretamente pelo nome ou descrever sua situação. Exemplos:</p>
+
+          <div class="highlight">
+            <strong>→ Para prospectar leads:</strong>
+            "SCOUT, inicia. Quero encontrar clientes para minha consultoria de marketing."
+          </div>
+
+          <div class="highlight">
+            <strong>→ Para abordar um lead frio:</strong>
+            "Preciso de um script de primeiro contato para abordar no WhatsApp. Lead é nutricionista e não me conhece."
+          </div>
+
+          <div class="highlight">
+            <strong>→ Para quebrar uma objeção:</strong>
+            "O lead disse que é caro. Como respondo?"
+          </div>
+
+          <div class="highlight">
+            <strong>→ Para recuperar um lead que sumiu:</strong>
+            "Lead estava interessado, recebeu o preço e sumiu há 10 dias. Como reativo?"
+          </div>
+
+          <div class="highlight">
+            <strong>→ Para analisar suas vendas:</strong>
+            "ANALYST, inicia. Quero entender onde meu funil está travando."
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">3</div>
+          <div class="step-title">Responda as perguntas do agente</div>
+        </div>
+        <div class="step-body">
+          <p>Cada agente vai fazer perguntas estratégicas sobre seu contexto — uma por vez.</p>
+          <p>Quanto mais detalhado você for nas respostas, mais preciso será o script ou a análise entregue.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num">4</div>
+          <div class="step-title">Receba e aplique o protocolo</div>
+        </div>
+        <div class="step-body">
+          <p>O agente entrega o script pronto, o protocolo ou a análise — formatado para uso imediato.</p>
+          <p>Copie, adapte com seu nome e aplique direto no WhatsApp, DM ou call.</p>
+          <div class="note" style="margin-top:12px;">
+            <strong>Dica:</strong> Guarde os scripts que mais funcionam. Com o tempo você vai ter um banco de mensagens validadas para cada situação do seu processo de vendas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAPA DO CICLO -->
+  <div class="section">
+    <div class="section-label">Referência Rápida</div>
+    <div class="section-title">QUANDO USAR CADA AGENTE</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">TOPO</div>
+          <div class="step-title">Não tenho clientes suficientes</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">SCOUT</strong> para mapear, filtrar e qualificar quem tem perfil real de compra.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">TOPO</div>
+          <div class="step-title">Tenho lista mas não sei abordar</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">HUNTER</strong> para criar o script de primeiro contato adaptado para Instagram, WhatsApp ou LinkedIn.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">MEIO</div>
+          <div class="step-title">Lead respondeu — não sei conduzir</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">MAPPER</strong> para fazer o diagnóstico certo e entender a dor real antes de apresentar qualquer oferta.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">MEIO</div>
+          <div class="step-title">Hora de apresentar meu serviço</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">PITCHER</strong> para estruturar o pitch completo — com âncora de valor e o momento certo de falar o preço.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">MEIO</div>
+          <div class="step-title">Lead travou depois do preço</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">HANDLER</strong> com o protocolo A.C.T. para tratar a objeção sem ceder desconto.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">FUNDO</div>
+          <div class="step-title">Lead parece pronto mas não fechou</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">CLOSER</strong> para aplicar o tipo certo de fechamento — sem pressão, sem urgência falsa.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">FUNDO</div>
+          <div class="step-title">Lead sumiu sem comprar</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">GHOST</strong> para a sequência de reativação em 4 toques — sem parecer desesperado.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">PÓS</div>
+          <div class="step-title">Cliente comprou — e agora?</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">KEEPER</strong> para o onboarding, acompanhamento 30-60-90 dias, upsell e geração de indicações.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num" style="width:auto; padding:0 10px; border-radius:2px; font-size:9px; letter-spacing:1px;">META</div>
+          <div class="step-title">Não sei onde estou perdendo venda</div>
+        </div>
+        <div class="step-body"><p>Use o <strong style="color:#a855f7">ANALYST</strong> para mapear o funil completo, identificar o gargalo e receber o plano de ação.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">SQUAD CLOSER IA</div>
+    <div class="footer-note">9 agentes. 1 sistema. Sem salário. Sem desculpa.</div>
+  </div>
+
+</div>
+</body>
+</html>
